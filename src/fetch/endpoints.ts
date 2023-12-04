@@ -1,10 +1,23 @@
-import { API_URL, FETCH_OPTIONS } from "./constants";
+import { SeasonsResult, TeamsRankingsResult } from "./types";
 
-const getSeasons = async () => {
-  const response = await fetch(API_URL, FETCH_OPTIONS);
-  const sesasons = await response.json();
+const API_URL = "https://dosformulaone.free.beeceptor.com";
 
-  return sesasons;
+const getSeasons = async (): Promise<SeasonsResult> => {
+  const response = await fetch(`${API_URL}/seasons`, { method: "GET" });
+  const seasons = (await response.json()) as SeasonsResult;
+
+  return seasons.reverse();
 };
 
-export { getSeasons };
+const getTeamsRankingsBySeason = async (
+  season: number
+): Promise<TeamsRankingsResult> => {
+  const response = await fetch(`${API_URL}/rankings/teams/season/${season}`, {
+    method: "GET",
+  });
+  const teams = (await response.json()) as TeamsRankingsResult;
+
+  return teams;
+};
+
+export { getSeasons, getTeamsRankingsBySeason };

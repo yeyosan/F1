@@ -1,28 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Heading } from "./Heading";
-import { getSeasons } from "../fetch/endpoints";
 import { SeasonsFilter } from "./SeasonsFilter";
+import { DataProvider } from "./DataProvider";
 
-const App = () => {
-  const [seasons, setSeasons] = useState<Array<number>>([]);
-
-  useEffect(() => {
-    const loadSeasons = async () => {
-      try {
-        setSeasons(await getSeasons());
-      } catch (err) {
-        console.log("error", err);
-      }
-    };
-    loadSeasons();
-  }, []);
-
-  return (
-    <>
-      <Heading>F1</Heading>
-      <SeasonsFilter seasons={seasons} />
-    </>
-  );
-};
+const App = () => (
+  <DataProvider>
+    <Heading>F1</Heading>
+    <SeasonsFilter />
+  </DataProvider>
+);
 
 export { App };
