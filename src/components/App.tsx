@@ -3,7 +3,7 @@ import { DataProvider, Heading, Rankings, SeasonsFilter } from "./";
 
 const App = () => (
   <DataProvider>
-    <Heading>F1</Heading>
+    <Heading>F1 Rankings</Heading>
     <SeasonsFilter />
     <Rankings />
   </DataProvider>

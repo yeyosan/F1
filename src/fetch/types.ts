@@ -1,11 +1,33 @@
-enum RankingTabs {
-  DRIVERS = "drivers",
-  TEAMS = "teams",
-}
-
 type SeasonsResult = Array<number>;
 
-type TeamsRankingsResult = Array<{
+interface DriverRankingResult {
+  position: number;
+  driver: {
+    id: number;
+    name: string;
+    abbr: string;
+    number: number;
+    image: string;
+  };
+  team: {
+    id: number;
+    name: string;
+    logo: string;
+  };
+  points: number;
+  wins: number;
+}
+
+interface DriverRankingData {
+  pos: number;
+  driver: string;
+  teamLogo: string;
+  teamName: string;
+  points: number;
+  wins: number;
+}
+
+interface TeamRankingResult {
   position: number;
   team: {
     id: number;
@@ -13,13 +35,19 @@ type TeamsRankingsResult = Array<{
     logo: string;
   };
   points: number;
-}>;
+}
 
-type DriversRankingsResult = Array<number>;
+interface TeamRankingData {
+  pos: number;
+  logo: string;
+  team: string;
+  points: number;
+}
 
-export {
-  RankingTabs,
+export type {
   SeasonsResult,
-  TeamsRankingsResult,
-  DriversRankingsResult,
+  DriverRankingResult,
+  DriverRankingData,
+  TeamRankingResult,
+  TeamRankingData,
 };

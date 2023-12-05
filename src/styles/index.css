@@ -2,3 +2,14 @@
   box-sizing: border-box;
   font-family: Arial, Tahoma, Verdana;
 }
+
+body {
+  height: 100vh;
+  margin: 0 1vw;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

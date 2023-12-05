@@ -1,7 +1,6 @@
-import React, { ReactNode, SyntheticEvent, useEffect, useState } from "react";
+import React, { ReactNode, SyntheticEvent } from "react";
 import { ActionType, useData, useDispatch } from "../DataProvider";
-import { getTeamsRankingsBySeason } from "../../fetch";
-import { RankingTabs, TeamsRankingsResult } from "../../fetch/types";
+import { RankingTabs } from "./";
 import { Tabs, Tab } from "@mui/material";
 
 const Component = (): ReactNode => {
@@ -18,22 +17,6 @@ const Component = (): ReactNode => {
       <Tab label="Teams" value={RankingTabs.TEAMS} />
     </Tabs>
   );
-
-  /* const [rankings, setRankings] = useState<TeamsRankingsResult>([]);
-
-  useEffect(() => {
-    const loadRankings = async () => {
-      try {
-        setRankings(await getTeamsRankingsBySeason(selectedSeason as string));
-      } catch (err) {
-        console.log("error", err);
-      }
-    };
-    loadRankings();
-  }, [selectedSeason]);
-
-  console.info("rankings", rankings);
-  return <span>Rankings</span>; */
 };
 
 export { Component as Tabs };

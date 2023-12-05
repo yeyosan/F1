@@ -36,4 +36,5 @@ const Heading = ({
   return <HeadingTag style={{ textAlign: alignment }}>{children}</HeadingTag>;
 };
 
-export { Alignment as HeadingAlignment, Props as HeadingProps, Heading };
+export { Heading };
+export type { Alignment as HeadingAlignment, Props as HeadingProps };

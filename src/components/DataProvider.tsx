@@ -1,5 +1,5 @@
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
-import { RankingTabs } from "../fetch/types";
+import { RankingTabs } from "./Rankings";
 
 interface Data {
   selectedSeason?: string;

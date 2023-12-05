@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { ActionType, useData, useDispatch } from "./DataProvider";
 import { getSeasons } from "../fetch";
-import { SeasonsResult } from "../fetch/types";
+import type { SeasonsResult } from "../fetch";
 
 const SeasonsFilter = (): ReactNode => {
   const { selectedSeason } = useData();
@@ -26,7 +26,12 @@ const SeasonsFilter = (): ReactNode => {
   useEffect(() => {
     const loadSeasons = async () => {
       try {
-        setSeasons(await getSeasons());
+        const seasons = await getSeasons();
+        setSeasons(seasons);
+        dispatch({
+          type: ActionType.SET_SELECTED_SEASON,
+          payload: seasons[0].toString(),
+        });
       } catch (err) {
         console.log("error", err);
       }
@@ -38,7 +43,7 @@ const SeasonsFilter = (): ReactNode => {
 
   return (
     !!seasons.length && (
-      <FormControl fullWidth>
+      <FormControl fullWidth margin="normal">
         <InputLabel>Seasons</InputLabel>
         <Select
           label="Seasons"
