@@ -1,48 +1,32 @@
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
-import {
-  DriversRankingsResult,
-  SeasonsResult,
-  TeamsRankingsResult,
-} from "../fetch/types";
+import { RankingTabs } from "../fetch/types";
 
 interface Data {
-  seasons: SeasonsResult;
-  rankings: {
-    teams: TeamsRankingsResult;
-    drivers: DriversRankingsResult;
-  };
+  selectedSeason?: string;
+  selectedRankingTab: RankingTabs;
 }
 
 interface Action {
   type: ActionType;
-  payload?: any;
+  payload: string;
 }
 
 enum ActionType {
-  SET_SEASONS = "setSeasons",
-  SET_TEAMS_RANKINGS = "setTeamsRankings",
-  SET_DRIVERS_RANKINGS = "setDriversRankings",
+  SET_SELECTED_SEASON = "setSelectedSeason",
+  SET_SELECTED_RANKING_TAB = "setSelectedRankingTab",
 }
 
 const initialData: Data = {
-  seasons: [],
-  rankings: {
-    teams: [],
-    drivers: [],
-  },
+  selectedSeason: undefined,
+  selectedRankingTab: RankingTabs.DRIVERS,
 };
 
-const dataReducer = (
-  { seasons, rankings }: Data,
-  { type, payload }: Action
-): Data => {
+const dataReducer = (state: Data, { type, payload }: Action): Data => {
   switch (type) {
-    case ActionType.SET_SEASONS:
-      return { seasons: payload, rankings };
-    case ActionType.SET_TEAMS_RANKINGS:
-      return { seasons, rankings: { ...rankings, teams: payload } };
-    case ActionType.SET_DRIVERS_RANKINGS:
-      return { seasons, rankings: { ...rankings, drivers: payload } };
+    case ActionType.SET_SELECTED_SEASON:
+      return { ...state, selectedSeason: payload };
+    case ActionType.SET_SELECTED_RANKING_TAB:
+      return { ...state, selectedRankingTab: payload as RankingTabs };
   }
 };
 

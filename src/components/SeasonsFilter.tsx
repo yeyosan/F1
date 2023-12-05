@@ -1,21 +1,37 @@
-import React, { ReactNode, useEffect } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { ReactNode, useEffect, useState } from "react";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { ActionType, useData, useDispatch } from "./DataProvider";
-import { getSeasons } from "../fetch/endpoints";
+import { getSeasons } from "../fetch";
+import { SeasonsResult } from "../fetch/types";
 
 const SeasonsFilter = (): ReactNode => {
-  const { seasons } = useData();
+  const { selectedSeason } = useData();
   const dispatch = useDispatch();
+
+  const [seasons, setSeasons] = useState<SeasonsResult>([]);
+
+  const handleSeasonChange = (evt: SelectChangeEvent) => {
+    dispatch({
+      type: ActionType.SET_SELECTED_SEASON,
+      payload: evt.target.value,
+    });
+  };
 
   useEffect(() => {
     const loadSeasons = async () => {
       try {
-        const result = await getSeasons();
-        dispatch({ type: ActionType.SET_SEASONS, payload: result });
+        setSeasons(await getSeasons());
       } catch (err) {
         console.log("error", err);
       }
     };
+
     loadSeasons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -24,9 +40,13 @@ const SeasonsFilter = (): ReactNode => {
     !!seasons.length && (
       <FormControl fullWidth>
         <InputLabel>Seasons</InputLabel>
-        <Select label="Seasons" value={seasons[0]}>
+        <Select
+          label="Seasons"
+          value={selectedSeason || seasons[0].toString()}
+          onChange={handleSeasonChange}
+        >
           {seasons.map((season) => (
-            <MenuItem key={season} value={season}>
+            <MenuItem key={season} value={season.toString()}>
               {season}
             </MenuItem>
           ))}

@@ -1,3 +1,8 @@
+enum RankingTabs {
+  DRIVERS = "drivers",
+  TEAMS = "teams",
+}
+
 type SeasonsResult = Array<number>;
 
 type TeamsRankingsResult = Array<{
@@ -12,4 +17,9 @@ type TeamsRankingsResult = Array<{
 
 type DriversRankingsResult = Array<number>;
 
-export { SeasonsResult, TeamsRankingsResult, DriversRankingsResult };
+export {
+  RankingTabs,
+  SeasonsResult,
+  TeamsRankingsResult,
+  DriversRankingsResult,
+};

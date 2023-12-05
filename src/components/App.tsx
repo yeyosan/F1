@@ -1,12 +1,11 @@
 import React from "react";
-import { Heading } from "./Heading";
-import { SeasonsFilter } from "./SeasonsFilter";
-import { DataProvider } from "./DataProvider";
+import { DataProvider, Heading, Rankings, SeasonsFilter } from "./";
 
 const App = () => (
   <DataProvider>
     <Heading>F1</Heading>
     <SeasonsFilter />
+    <Rankings />
   </DataProvider>
 );
 
