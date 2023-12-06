@@ -1,7 +1,7 @@
 import React, { ReactNode, SyntheticEvent } from "react";
+import { Tabs, Tab } from "@mui/material";
 import { ActionType, useData, useDispatch } from "../DataProvider";
 import { RankingTabs } from "./";
-import { Tabs, Tab } from "@mui/material";
 
 const Component = (): ReactNode => {
   const { selectedRankingTab } = useData();

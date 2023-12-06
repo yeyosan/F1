@@ -1,4 +1,4 @@
-import React, { Dispatch, JSX } from "react";
+import React, { Dispatch, ReactNode, SetStateAction } from "react";
 import { Dialog, DialogTitle, IconButton } from "@mui/material";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { AddItemForm } from "./Form";
@@ -6,10 +6,10 @@ import { AddItemForm } from "./Form";
 interface Props {
   title: string;
   isOpen: boolean;
-  setIsOpen: Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const CreateItemDialog = ({ title, isOpen, setIsOpen }: Props): JSX.Element => {
+const CreateItemDialog = ({ title, isOpen, setIsOpen }: Props): ReactNode => {
   const handleClose = () => setIsOpen(false);
 
   return (

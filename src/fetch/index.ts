@@ -1,5 +1,5 @@
-import { Values } from "../components";
 import { API_URL_GET, FETCH_OPTIONS } from "./constants";
+import { Values } from "../components/Rankings/constants";
 import type {
   SeasonsResult,
   DriverRankingResult,
@@ -82,4 +82,5 @@ export {
   getTeamsRankingsBySeason,
   addNewItem,
 };
+
 export type { SeasonsResult, DriverRankingData, TeamRankingData };

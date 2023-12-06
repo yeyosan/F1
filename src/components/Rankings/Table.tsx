@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useData } from "../DataProvider";
+import React, { ReactNode, useEffect, useState } from "react";
 import {
   Container,
   Table,
@@ -8,15 +7,16 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { RankingTabs, driversHeaders, teamsHeaders } from "./constants";
 import {
   getDriversRankingsBySeason,
   getTeamsRankingsBySeason,
 } from "../../fetch";
+import { RankingTabs, driversHeaders, teamsHeaders } from "./constants";
+import { useData } from "../DataProvider";
 import type { Header } from "./constants";
 import type { DriverRankingData, TeamRankingData } from "../../fetch";
 
-const Component = () => {
+const Component = (): ReactNode => {
   const { selectedRankingTab, selectedSeason } = useData();
 
   const [rankingHeaders, setRankingHeaders] = useState<Array<Header>>([]);

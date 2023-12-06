@@ -1,4 +1,10 @@
-import React, { Dispatch, createContext, useContext, useReducer } from "react";
+import React, {
+  Dispatch,
+  ReactNode,
+  createContext,
+  useContext,
+  useReducer,
+} from "react";
 import { RankingTabs } from "./Rankings";
 
 interface Data {
@@ -33,7 +39,7 @@ const dataReducer = (state: Data, { type, payload }: Action): Data => {
 const DataContext = createContext<Data>(initialData);
 const DispatchContext = createContext<Dispatch<Action>>(() => {});
 
-const DataProvider = ({ children }) => {
+const DataProvider = ({ children }): ReactNode => {
   const [state, dispatch] = useReducer(dataReducer, initialData);
 
   return (

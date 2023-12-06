@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
+import { Button, Stack } from "@mui/material";
+import { CreateItemDialog } from "./CreateItemDialog";
 import { Tabs } from "./Tabs";
 import { Table } from "./Table";
-import { Button, Stack } from "@mui/material";
-import { useData } from "../DataProvider";
 import { RankingTabs } from "./constants";
-import { CreateItemDialog } from "./CreateItemDialog";
+import { useData } from "../DataProvider";
 
-const Container = () => {
+const Container = (): ReactNode => {
   const { selectedRankingTab } = useData();
   const isDriverTab = selectedRankingTab === RankingTabs.DRIVERS;
   const label = `Add ${isDriverTab ? "Driver" : "Team"}`;

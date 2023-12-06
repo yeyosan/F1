@@ -1,4 +1,4 @@
-import React, { JSX, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Formik, Form } from "formik";
 import {
   Alert,
@@ -6,12 +6,11 @@ import {
   DialogActions,
   DialogContent,
   Fade,
-  Slide,
   TextField,
 } from "@mui/material";
+import { addNewItem } from "../../fetch";
 import { RankingTabs, driverInputsConfig, teamInputsConfig } from "./constants";
 import { useData } from "../DataProvider";
-import { addNewItem } from "../../fetch";
 import type { FormikErrors, FormikHelpers, FormikProps } from "formik";
 import type { Values, InputConfig } from "./constants";
 
@@ -19,7 +18,7 @@ interface Props {
   closeDialog: () => void;
 }
 
-const AddItemForm = ({ closeDialog }: Props): JSX.Element => {
+const AddItemForm = ({ closeDialog }: Props): ReactNode => {
   const { selectedRankingTab } = useData();
   const isDriverTab = selectedRankingTab === RankingTabs.DRIVERS;
   const inputsConfig = isDriverTab ? driverInputsConfig : teamInputsConfig;

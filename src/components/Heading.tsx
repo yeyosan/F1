@@ -1,4 +1,4 @@
-import React, { ElementType, JSX } from "react";
+import React, { ElementType, ReactNode } from "react";
 
 type Level = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -30,7 +30,7 @@ const Heading = ({
   level = 1,
   alignment = Alignment.LEFT,
   children,
-}: Props): JSX.Element => {
+}: Props): ReactNode => {
   const HeadingTag = `h${validateLevel(level)}` as ElementType;
 
   return <HeadingTag style={{ textAlign: alignment }}>{children}</HeadingTag>;
