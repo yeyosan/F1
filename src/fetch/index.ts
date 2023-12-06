@@ -1,3 +1,4 @@
+import { Values } from "../components";
 import { API_URL_GET, FETCH_OPTIONS } from "./constants";
 import type {
   SeasonsResult,
@@ -53,5 +54,32 @@ const getTeamsRankingsBySeason = async (
   }));
 };
 
-export { getSeasons, getDriversRankingsBySeason, getTeamsRankingsBySeason };
+const addNewItem = async (values: Values): Promise<void> => {
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("max-age", "604800");
+
+  const postOptions = ["success", "failure"];
+  const idxOption = Math.floor(Math.random() * 2);
+  const response = await fetch(
+    `https://dosformulaone.free.beeceptor.com/add/item/${postOptions[idxOption]}`,
+    {
+      method: "POST",
+      cache: "force-cache",
+      headers,
+      body: JSON.stringify(values),
+    }
+  );
+
+  if (response.status === 503) {
+    throw new Error();
+  }
+};
+
+export {
+  getSeasons,
+  getDriversRankingsBySeason,
+  getTeamsRankingsBySeason,
+  addNewItem,
+};
 export type { SeasonsResult, DriverRankingData, TeamRankingData };
