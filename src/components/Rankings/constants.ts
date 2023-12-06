@@ -40,8 +40,22 @@ const driverInputsConfig: Array<InputConfig> = [
     initialValue: "",
   },
   {
+    key: "teamName",
+    label: "Team Name",
+    type: "text",
+    align: "left",
+    initialValue: "",
+  },
+  {
     key: "points",
     label: "Points",
+    type: "number",
+    align: "right",
+    initialValue: 0,
+  },
+  {
+    key: "wins",
+    label: "Wins",
     type: "number",
     align: "right",
     initialValue: 0,
